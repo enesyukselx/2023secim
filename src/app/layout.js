@@ -1,4 +1,7 @@
 import "./globals.scss";
+import styles from "./layout.module.scss";
+
+import Link from "next/link";
 
 export const metadata = {
     title: "Create Next App",
@@ -8,7 +11,31 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <header>
+                    <div className={styles.logo}>
+                        <h1>SECIM2023</h1>
+                    </div>
+
+                    <div className={styles.menu}>
+                        <ul>
+                            <li>
+                                <Link href="/">Seçim 2023</Link>
+                            </li>
+                            <li>
+                                <Link href="/anket">Anket Sonuçları</Link>
+                            </li>
+                            <li>
+                                <Link href="/youtube">
+                                    Youtube Sokak Röportajları
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+
+                <div className={styles.content}>{children}</div>
+            </body>
         </html>
     );
 }

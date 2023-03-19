@@ -1,0 +1,42 @@
+.logo {
+    text-align: center;
+    padding-top: 2rem;
+
+    h1 {
+        font-size: 3rem;
+        letter-spacing: 0.3rem;
+    }
+}
+
+.menu {
+    text-align: center;
+    ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+
+        li {
+            padding: 3rem 0.3rem;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: #eeeeee;
+        background-color: transparent;
+        font-size: 1.3rem;
+        padding: 1rem 2rem;
+        border-radius: 100px;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+
+        &:hover {
+            background-color: rgba(88, 88, 88, 0.483);
+        }
+    }
+}
+
+.content {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 2rem;
+}
