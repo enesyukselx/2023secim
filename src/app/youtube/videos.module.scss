@@ -1,0 +1,44 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    grid-gap: 20px;
+}
+
+.youtube {
+    display: flex;
+    background-color: #fff;
+    color: #000;
+    height: 120px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #f1f1f1;
+    }
+
+    .details {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: space-between;
+
+        .publisher {
+            font-weight: 500;
+        }
+    }
+}
+
+@media (max-width: 1440px) {
+    .youtube {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr;
+    }
+}

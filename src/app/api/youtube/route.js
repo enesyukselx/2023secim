@@ -53,6 +53,33 @@ const data = [
             "https://i.ytimg.com/an_webp/_N4JQTDIttg/mqdefault_6s.webp?du=3000&sqp=COi-4aAG&rs=AOn4CLDBhQn2qYRcz2p-cP7zZfhCDCXhJw",
         date: "2023-03-14",
     },
+    {
+        id: Math.random(),
+        title: "2023 Cumhurbaşkanlığı Seçim Anketi | 1. Bölüm: Kırıkkale",
+        publisher: "Halk Ekranı",
+        url: "https://www.youtube.com/watch?v=_N4JQTDIttg",
+        thumbnail:
+            "https://i.ytimg.com/an_webp/_N4JQTDIttg/mqdefault_6s.webp?du=3000&sqp=COi-4aAG&rs=AOn4CLDBhQn2qYRcz2p-cP7zZfhCDCXhJw",
+        date: "2023-03-14",
+    },
+    {
+        id: Math.random(),
+        title: "2023 Cumhurbaşkanlığı Seçim Anketi | 1. Bölüm: Kırıkkale",
+        publisher: "Halk Ekranı",
+        url: "https://www.youtube.com/watch?v=_N4JQTDIttg",
+        thumbnail:
+            "https://i.ytimg.com/an_webp/_N4JQTDIttg/mqdefault_6s.webp?du=3000&sqp=COi-4aAG&rs=AOn4CLDBhQn2qYRcz2p-cP7zZfhCDCXhJw",
+        date: "2023-03-14",
+    },
+    {
+        id: Math.random(),
+        title: "2023 Cumhurbaşkanlığı Seçim Anketi | 1. Bölüm: Kırıkkale",
+        publisher: "Halk Ekranı",
+        url: "https://www.youtube.com/watch?v=_N4JQTDIttg",
+        thumbnail:
+            "https://i.ytimg.com/an_webp/_N4JQTDIttg/mqdefault_6s.webp?du=3000&sqp=COi-4aAG&rs=AOn4CLDBhQn2qYRcz2p-cP7zZfhCDCXhJw",
+        date: "2023-03-14",
+    },
 ];
 
 export async function GET(request) {
