@@ -1,0 +1,26 @@
+.input {
+    margin: 1rem 0;
+    width: 100%;
+
+    input {
+        width: 100%;
+        padding: 1.6rem 1.3rem;
+        background: #000;
+        border: 3px solid rgba(204, 204, 204, 0.45);
+        border-radius: 10px;
+        font-size: 1.4rem;
+        color: #fff;
+        transition: 0.2s all;
+        font-weight: bold;
+
+        outline: none;
+
+        &::placeholder {
+            color: #fff;
+        }
+
+        &:focus {
+            border: 3px solid rgba(255, 255, 255, 0.818);
+        }
+    }
+}

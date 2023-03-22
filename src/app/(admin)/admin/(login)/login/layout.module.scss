@@ -1,0 +1,17 @@
+.header {
+    text-transform: uppercase;
+    font-size: 2rem;
+    h1 {
+        font-weight: 100;
+    }
+}
+
+.content {
+    //center vertical and horizontal
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}

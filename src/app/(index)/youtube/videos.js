@@ -22,6 +22,14 @@ const Videos = () => {
     };
 
     useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (
+                window.innerHeight + window.scrollY >=
+                document.body.offsetHeight - 100
+            ) {
+                loadHandle();
+            }
+        });
         fetchData();
     }, []);
 
@@ -41,15 +49,6 @@ const Videos = () => {
             return "Bugün";
         }
     }
-
-    window.addEventListener("scroll", () => {
-        if (
-            window.innerHeight + window.scrollY >=
-            document.body.offsetHeight - 100
-        ) {
-            loadHandle();
-        }
-    });
 
     return (
         <div className={styles.main}>

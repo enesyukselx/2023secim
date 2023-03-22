@@ -1,0 +1,21 @@
+.button {
+    width: 100%;
+
+    button {
+        border: none;
+        outline: none;
+        color: #fff;
+        width: 100%;
+        font-size: 2rem;
+        background-color: rgb(19, 70, 172);
+        padding: 1.5rem 1rem;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(19, 70, 172);
+            opacity: 0.8;
+        }
+    }
+}

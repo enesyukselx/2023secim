@@ -47,16 +47,16 @@ const Page = () => {
         return `${day} ${months[month]} ${year}`;
     };
 
-    window.addEventListener("scroll", () => {
-        if (
-            window.innerHeight + window.scrollY >=
-            document.body.offsetHeight - 100
-        ) {
-            loadHandle();
-        }
-    });
-
     useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (
+                window.innerHeight + window.scrollY >=
+                document.body.offsetHeight - 100
+            ) {
+                loadHandle();
+            }
+        });
+
         fetchData();
     }, []);
 
