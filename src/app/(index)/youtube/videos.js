@@ -42,14 +42,14 @@ const Videos = () => {
         }
     }
 
-    window.onscroll = function (ev) {
+    window.addEventListener("scroll", () => {
         if (
-            window.innerHeight + window.pageYOffset >=
-            document.body.offsetHeight
+            window.innerHeight + window.scrollY >=
+            document.body.offsetHeight - 100
         ) {
             loadHandle();
         }
-    };
+    });
 
     return (
         <div className={styles.main}>
