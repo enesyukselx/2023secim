@@ -1,20 +1,23 @@
+"use client";
+
 import "@/app/globals.scss";
 import styles from "./layout.module.scss";
-
-export const metadata = {
-    title: "Admin Panel - Login",
-    description: "Admin Panel - Login",
-};
+import { AuthContextProvider } from "@/context/AuthContext";
 
 export default function LoginLayout({ children }) {
     return (
         <html lang="en">
+            <head>
+                <title>Admin Panel | Login</title>
+            </head>
             <body>
                 <div className={styles.content}>
-                    <div className={styles.header}>
-                        <h1>Admin Panel | Login</h1>
-                    </div>
-                    {children}
+                    <AuthContextProvider>
+                        <div className={styles.header}>
+                            <h1>Admin Panel | Login</h1>
+                        </div>
+                        {children}
+                    </AuthContextProvider>
                 </div>
             </body>
         </html>
