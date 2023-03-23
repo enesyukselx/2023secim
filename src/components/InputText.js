@@ -3,22 +3,15 @@
 import styles from "./InputText.module.scss";
 
 const InputText = (props) => {
-    const input =
-        props.type === "password" ? (
+    return (
+        <div className={styles.input}>
             <input
-                type="password"
+                type={props.type}
                 onChange={props.onChange}
                 placeholder={props.placeholder}
             />
-        ) : (
-            <input
-                type="text"
-                onChange={props.onChange}
-                placeholder={props.placeholder}
-            />
-        );
-
-    return <div className={styles.input}>{input}</div>;
+        </div>
+    );
 };
 
 export default InputText;

@@ -37,12 +37,13 @@ const Page = () => {
         <div className={styles.content}>
             <InputText
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Kullanıcı Adı"
+                type="email"
+                placeholder="Email"
             />
             <InputText
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
-                placeholder="Password"
+                placeholder="Şifre"
             />
             <Button onClick={clickHandle}>Giriş Yap</Button>
         </div>
