@@ -1,8 +1,9 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "./page.module.scss";
 import InputText from "@/components/InputText";
 import Button from "@/components/Button";
+import Alert from "@/components/Alert";
 
 import addData from "@/firebase/firestore/addData";
 
@@ -14,6 +15,8 @@ const Page = () => {
     const dateRef = useRef();
     const urlRef = useRef();
 
+    const [error, setError] = useState(false);
+
     const fetchHandler = async () => {
         if (!idRef.current.value) return;
 
@@ -22,8 +25,11 @@ const Page = () => {
         );
 
         if (!response.ok) {
+            setError(true);
             return;
         }
+
+        setError(false);
 
         const data = await response.json();
 
@@ -72,6 +78,7 @@ const Page = () => {
     return (
         <div className={styles.content}>
             <h1>Video ekle</h1>
+            {error && <Alert>Video bilgisi çekilemedi!</Alert>}
             <InputText type="text" placeholder="Video ID" ref={idRef} />
             <Button onClick={fetchHandler}>Video bilgilerini çek</Button>
 

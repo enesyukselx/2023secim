@@ -40,6 +40,9 @@ export default function AdminLayout({ children }) {
                         <Link href="/admin/youtube">Youtube Videoları</Link>
                     </li>
                     <li>
+                        <Link href="/admin/youtube/add">Video Ekle</Link>
+                    </li>
+                    <li>
                         <Link href="/admin/anket">Seçim Anketleri</Link>
                     </li>
                     <li>

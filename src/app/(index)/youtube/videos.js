@@ -5,13 +5,24 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./videos.module.scss";
 
+import getAllDocuments from "@/firebase/firestore/getAllDatas";
+
 const Videos = () => {
     const [data, setData] = useState([]);
     const [startIndex, setStartIndex] = useState(20);
 
-    const fetchData = async () => {
-        const res = await fetch("http://localhost:3000/api/youtube");
-        const data = await res.json();
+    const firebaseData = async () => {
+        const { result, error } = await getAllDocuments("youtube");
+        if (error) {
+            console.log(error);
+            return;
+        }
+
+        const data = [];
+        result.forEach((doc) => {
+            data.push({ id: doc.id, ...doc.data() });
+        });
+
         setData(data);
     };
 
@@ -30,7 +41,7 @@ const Videos = () => {
                 loadHandle();
             }
         });
-        fetchData();
+        firebaseData();
     }, []);
 
     data.sort((a, b) => {
@@ -57,17 +68,17 @@ const Videos = () => {
                     <div className={styles.youtube}>
                         <div className={styles.image}>
                             <Image
-                                src={item.thumbnail}
+                                src={item.image}
                                 width={200}
                                 height={120}
-                                alt={item.publisher}
+                                alt={item.channel}
                             />
                         </div>
                         <div className={styles.details}>
                             <h3>{item.title}</h3>
                             <div>
                                 <p className={styles.publisher}>
-                                    {item.publisher}
+                                    {item.channel}
                                 </p>
                                 <p className={styles.date}>
                                     {formatDate(item.date)}
