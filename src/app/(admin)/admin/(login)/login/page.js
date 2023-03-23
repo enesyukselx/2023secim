@@ -7,10 +7,13 @@ import { useAuthContext } from "@/context/AuthContext";
 import styles from "./page.module.scss";
 import InputText from "@/components/InputText";
 import Button from "@/components/Button";
+import Alert from "@/components/Alert";
 
 const Page = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
+
     const router = useRouter();
     const { user } = useAuthContext();
 
@@ -18,7 +21,8 @@ const Page = () => {
         const { result, error } = await signIn(email, password);
 
         if (error) {
-            return console.log(error);
+            setError(error);
+            return;
         }
 
         return router.push("/admin");
@@ -28,6 +32,8 @@ const Page = () => {
         <></>
     ) : (
         <div className={styles.content}>
+            {error && <Alert>Email veya Şifre Yanlış</Alert>}
+
             <InputText
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
