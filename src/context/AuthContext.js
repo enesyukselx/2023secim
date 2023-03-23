@@ -29,7 +29,21 @@ export const AuthContextProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ user }}>
-            {loading ? <div>Loading...</div> : children}
+            {loading ? (
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100vh",
+                        fontSize: "2rem",
+                    }}
+                >
+                    Loading...
+                </div>
+            ) : (
+                children
+            )}
         </AuthContext.Provider>
     );
 };

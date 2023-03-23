@@ -1,19 +1,11 @@
 "use client";
 
+import React from "react";
 import logOut from "@/firebase/auth/logout";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useAuthContext } from "@/context/AuthContext";
 
 const Page = () => {
     const router = useRouter();
-    const { user } = useAuthContext();
-
-    useEffect(() => {
-        if (!user) {
-            router.push("/admin/login");
-        }
-    }, []);
 
     const clickHandle = async () => {
         const { result, error } = await logOut();
@@ -25,15 +17,11 @@ const Page = () => {
         return router.push("/admin/login");
     };
 
-    if (!user) {
-        return;
-    } else {
-        return (
-            <>
-                <button onClick={clickHandle}>çıkış</button>
-            </>
-        );
-    }
+    return (
+        <>
+            <button onClick={clickHandle}>çıkış</button>
+        </>
+    );
 };
 
 export default Page;

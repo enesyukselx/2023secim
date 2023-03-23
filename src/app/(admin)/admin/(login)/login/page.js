@@ -1,8 +1,7 @@
 "use client";
-
+import React, { useState } from "react";
 import signIn from "@/firebase/auth/signin";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 
 import styles from "./page.module.scss";
@@ -14,12 +13,6 @@ const Page = () => {
     const [password, setPassword] = useState("");
     const router = useRouter();
     const { user } = useAuthContext();
-
-    useEffect(() => {
-        if (user) {
-            router.push("/admin");
-        }
-    }, [user]);
 
     const clickHandle = async () => {
         const { result, error } = await signIn(email, password);

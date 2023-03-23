@@ -2,24 +2,26 @@
 
 import "@/app/globals.scss";
 import styles from "./layout.module.scss";
-import { AuthContextProvider } from "@/context/AuthContext";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAuthContext } from "@/context/AuthContext";
 
 export default function AdminLayout({ children }) {
-    return (
-        <html lang="en">
-            <body>
-                <header>
-                    <div className={styles.logo}>
-                        <h1>SECIM2023</h1>
-                    </div>
-                </header>
+    const router = useRouter();
+    const { user } = useAuthContext();
 
-                <div className={styles.content}>
-                    <AuthContextProvider>{children}</AuthContextProvider>
-                </div>
-            </body>
-        </html>
+    useEffect(() => {
+        if (!user) {
+            router.push("/admin/login");
+        }
+    }, []);
+
+    const content = user ? (
+        <div className={styles.content}>{children}</div>
+    ) : (
+        <></>
     );
+
+    return <>{content}</>;
 }

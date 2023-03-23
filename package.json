@@ -15,6 +15,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "encoding": "^0.1.13",
     "sass": "^1.59.3"
   }
 }
