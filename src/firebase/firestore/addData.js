@@ -16,14 +16,3 @@ export default async function addData(colllection, id, data) {
 
     return { result, error };
 }
-
-/*
-  How to use:
-
-  const { result, error } = await addData('users', 'user-id', data)
-
-  if (error) {
-    return console.log(error)
-  }
-
-  */
