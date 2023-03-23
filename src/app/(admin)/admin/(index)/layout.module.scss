@@ -1,14 +1,11 @@
 .content {
-    width: 50%;
-    margin: 0 auto;
-    padding-top: 5rem;
-
     display: flex;
+    width: 65%;
+    margin: 5rem auto;
 }
 
 .menu {
-    width: 30%;
-
+    margin-top: 7rem;
     ul {
         list-style: none;
         padding: 0;
@@ -59,5 +56,17 @@
 
 .main {
     width: 70%;
-    padding: 1rem;
+    padding: 0 4rem;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 100%;
+    }
 }
