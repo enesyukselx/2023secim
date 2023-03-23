@@ -14,7 +14,7 @@ export default function LoginLayout({ children }) {
                 <div className={styles.content}>
                     <AuthContextProvider>
                         <div className={styles.header}>
-                            <h1>Admin Panel | Login</h1>
+                            <h1>Login</h1>
                         </div>
                         {children}
                     </AuthContextProvider>

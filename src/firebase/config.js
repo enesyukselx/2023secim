@@ -1,13 +1,13 @@
 import { initializeApp, getApps } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBUkfzcZmnKEZhSJGPCc6tTmPLXkEfjhjI",
-    authDomain: "secim2023-6503f.firebaseapp.com",
-    projectId: "secim2023-6503f",
-    storageBucket: "secim2023-6503f.appspot.com",
-    messagingSenderId: "707391371896",
-    appId: "1:707391371896:web:6dd3783abc5c7a84d04b8d",
-    measurementId: "G-0ZF4JXQSQD",
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 let firebase_app =
