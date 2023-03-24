@@ -1,8 +1,9 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./page.module.scss";
 import InputText from "@/components/InputText";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 import getDocument from "@/firebase/firestore/getData";
 import addData from "@/firebase/firestore/addData";
@@ -13,6 +14,8 @@ const Page = ({ params }) => {
     const imageRef = useRef();
     const dateRef = useRef();
     const urlRef = useRef();
+
+    const router = useRouter();
 
     const getVideo = async () => {
         const { result, error } = await getDocument("youtube", params.slug);
@@ -59,6 +62,7 @@ const Page = ({ params }) => {
             imageRef.current.value = "";
             dateRef.current.value = "";
             urlRef.current.value = "";
+            router.push("/admin/youtube");
         }
     };
 
