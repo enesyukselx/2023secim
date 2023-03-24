@@ -33,6 +33,10 @@ const Videos = () => {
     };
 
     useEffect(() => {
+        firebaseData();
+    }, []);
+
+    if (typeof window !== "undefined") {
         window.addEventListener("scroll", () => {
             if (
                 window.innerHeight + window.scrollY >=
@@ -41,8 +45,7 @@ const Videos = () => {
                 loadHandle();
             }
         });
-        firebaseData();
-    }, []);
+    }
 
     data.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);

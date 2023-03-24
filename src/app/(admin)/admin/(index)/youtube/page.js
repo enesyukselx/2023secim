@@ -4,6 +4,7 @@ import styles from "./page.module.scss";
 import Link from "next/navigation";
 import getAllDocuments from "@/firebase/firestore/getAllDatas";
 import deleteData from "@/firebase/firestore/deleteData";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
     const [data, setData] = useState([]);
@@ -39,6 +40,8 @@ const Page = () => {
         firebaseData();
     }, []);
 
+    const router = useRouter();
+
     return (
         <div>
             <h1>Videolar</h1>
@@ -56,6 +59,16 @@ const Page = () => {
                                     }}
                                 >
                                     Videoyu kaldır
+                                </button>
+                                &nbsp; &nbsp; &nbsp;
+                                <button
+                                    onClick={() => {
+                                        router.push(
+                                            `/admin/youtube/edit/${item.id}`
+                                        );
+                                    }}
+                                >
+                                    Videoyu Düzenle
                                 </button>
                                 &nbsp; &nbsp; &nbsp;
                                 {item.date}

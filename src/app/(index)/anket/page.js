@@ -48,6 +48,10 @@ const Page = () => {
     };
 
     useEffect(() => {
+        fetchData();
+    }, []);
+
+    if (typeof window !== "undefined") {
         window.addEventListener("scroll", () => {
             if (
                 window.innerHeight + window.scrollY >=
@@ -56,9 +60,7 @@ const Page = () => {
                 loadHandle();
             }
         });
-
-        fetchData();
-    }, []);
+    }
 
     return (
         <div className={styles.main}>
