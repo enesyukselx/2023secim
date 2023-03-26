@@ -20,8 +20,11 @@ const Page = ({ params }) => {
     const getVideo = async () => {
         const { result, error } = await getDocument("youtube", params.slug);
         if (error) {
-            setError(true);
             return console.log(error);
+        }
+
+        if (!result.data()) {
+            return router.push("/admin/youtube");
         }
 
         titleRef.current.value = result.data().title;
