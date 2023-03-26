@@ -1,5 +1,3 @@
-"use client";
-
 import data from "@/constants/2018cb.json";
 
 const useGetCityFrom2018 = (cityName, candidate = null, type = null) => {

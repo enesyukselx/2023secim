@@ -43,7 +43,10 @@ export default function AdminLayout({ children }) {
                         <Link href="/admin/youtube/add">Video Ekle</Link>
                     </li>
                     <li>
-                        <Link href="/admin/anket">Seçim Anketleri</Link>
+                        <Link href="/admin/poll">Seçim Anketleri</Link>
+                    </li>
+                    <li>
+                        <Link href="/admin/poll/add">Anket Ekle</Link>
                     </li>
                     <li>
                         <button href="/admin" onClick={logoutHandle}>
