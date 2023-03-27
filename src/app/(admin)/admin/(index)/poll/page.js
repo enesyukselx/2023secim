@@ -48,6 +48,8 @@ const Page = () => {
         <div>
             <h1>Seçim Anketleri</h1>
             <Table
+                pagination={true}
+                show={8}
                 columns={[
                     "Anket Başlığı",
                     "Anket Tarihi",

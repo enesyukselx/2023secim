@@ -64,6 +64,8 @@ const Page = () => {
                     />
                 </div>
                 <Table
+                    pagination={true}
+                    show={8}
                     columns={[
                         "Video Adı",
                         "Kanal Adı",
