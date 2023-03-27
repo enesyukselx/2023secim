@@ -20,8 +20,11 @@ const Page = () => {
     const fetchHandler = async () => {
         if (!idRef.current.value) return;
 
+        const regex = /watch\?v=(\S+)/;
+        const match = regex.exec(idRef.current.value);
+
         const response = await fetch(
-            `http://localhost:3000/api/fetch?id=${idRef.current.value}`
+            `http://localhost:3000/api/fetch?id=${match[1]}`
         );
 
         if (!response.ok) {
@@ -52,7 +55,7 @@ const Page = () => {
 
         const { result, error } = await addData(
             "youtube",
-            idRef.current.value,
+            Math.random().toString(36).substr(2, 9),
             {
                 title: titleRef.current.value,
                 channel: channelRef.current.value,
@@ -79,7 +82,7 @@ const Page = () => {
         <div className={styles.content}>
             <h1>Video ekle</h1>
             {error && <Alert>Video bilgisi çekilemedi!</Alert>}
-            <InputText type="text" placeholder="Video ID" ref={idRef} />
+            <InputText type="text" placeholder="Youtube Linki" ref={idRef} />
             <Button onClick={fetchHandler}>Video bilgilerini çek</Button>
 
             <div className={styles.videoDetails}>

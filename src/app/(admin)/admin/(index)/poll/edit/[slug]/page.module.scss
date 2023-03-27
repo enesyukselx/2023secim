@@ -1,0 +1,16 @@
+.content {
+    h2 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.7rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(238, 238, 238, 0.226);
+    }
+}
+
+.numberinputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+}

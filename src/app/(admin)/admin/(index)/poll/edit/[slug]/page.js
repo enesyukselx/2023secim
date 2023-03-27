@@ -1,13 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import addData from "@/firebase/firestore/addData";
 import Button from "@/components/Button";
 import styles from "./page.module.scss";
 import InputText from "@/components/InputText";
 import Alert from "@/components/Alert";
 
-const Page = () => {
+import { useRouter } from "next/navigation";
+import getDocument from "@/firebase/firestore/getData";
+
+const Page = ({ params }) => {
     const titleRef = useRef();
     const dateRef = useRef();
     const erdoganRef = useRef();
@@ -16,6 +19,30 @@ const Page = () => {
     const oganRef = useRef();
 
     const [error, setError] = useState({ status: false, message: "" });
+
+    const router = useRouter();
+
+    const getPoll = async () => {
+        const { result, error } = await getDocument("polls", params.slug);
+        if (error) {
+            return console.log(error);
+        }
+
+        if (!result.data()) {
+            return router.push("/admin/poll");
+        }
+
+        titleRef.current.value = result.data().title;
+        dateRef.current.value = result.data().date;
+        erdoganRef.current.value = result.data().erdogan;
+        kilicdarogluRef.current.value = result.data().kilicdaroglu;
+        inceRef.current.value = result.data().ince;
+        oganRef.current.value = result.data().ogan;
+    };
+
+    useEffect(() => {
+        getPoll();
+    }, []);
 
     const addPollHandler = async () => {
         if (
@@ -39,7 +66,7 @@ const Page = () => {
             parseFloat(inceRef.current.value) +
             parseFloat(oganRef.current.value);
 
-        if (Math.round(total) !== 100) {
+        if (parseInt(total) !== 100) {
             setError({
                 status: true,
                 message: "Oranların hepsinin toplamı 100 olmalıdır.",
@@ -47,18 +74,14 @@ const Page = () => {
             return;
         }
 
-        const { result, error } = await addData(
-            "polls",
-            Math.random().toString(36).substr(2, 9),
-            {
-                title: titleRef.current.value,
-                date: dateRef.current.value,
-                erdogan: erdoganRef.current.value,
-                kilicdaroglu: kilicdarogluRef.current.value,
-                ince: inceRef.current.value,
-                ogan: oganRef.current.value,
-            }
-        );
+        const { result, error } = await addData("polls", params.slug, {
+            title: titleRef.current.value,
+            date: dateRef.current.value,
+            erdogan: erdoganRef.current.value,
+            kilicdaroglu: kilicdarogluRef.current.value,
+            ince: inceRef.current.value,
+            ogan: oganRef.current.value,
+        });
 
         if (error) {
             setError({
@@ -67,7 +90,7 @@ const Page = () => {
             });
             return;
         } else {
-            alert("Anket başarıyla eklendi.");
+            alert("Anket başarıyla düzenlendi.");
             titleRef.current.value = "";
             dateRef.current.value = "";
             erdoganRef.current.value = "";
@@ -75,6 +98,8 @@ const Page = () => {
             inceRef.current.value = "";
             oganRef.current.value = "";
             setError({ status: false, message: "" });
+
+            router.push("/admin/poll");
         }
     };
 
@@ -127,7 +152,7 @@ const Page = () => {
                     />
                 </div>
             </div>
-            <Button onClick={addPollHandler}>Anketi Ekle</Button>
+            <Button onClick={addPollHandler}>Anketi Düzenle</Button>
         </div>
     );
 };

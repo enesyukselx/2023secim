@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
-import Link from "next/navigation";
 import getAllDocuments from "@/firebase/firestore/getAllDatas";
 import deleteData from "@/firebase/firestore/deleteData";
 import { useRouter } from "next/navigation";
 import InputText from "@/components/InputText";
+import Table from "@/components/Table";
 
 const Page = () => {
     const [data, setData] = useState([]);
     const [search, setSearch] = useState("");
+    const router = useRouter();
 
     const deleteHandler = async (id) => {
         const { error } = await deleteData("youtube", id);
@@ -21,6 +22,10 @@ const Page = () => {
         firebaseData();
     };
 
+    const editHandler = (id) => {
+        router.push(`/admin/youtube/edit/${id}`);
+    };
+
     const firebaseData = async () => {
         const { result, error } = await getAllDocuments("youtube");
         if (error) {
@@ -30,7 +35,10 @@ const Page = () => {
 
         const data = [];
         result.forEach((doc) => {
-            data.push({ id: doc.id, ...doc.data() });
+            data.push({
+                id: doc.id,
+                ...doc.data(),
+            });
         });
         data.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
@@ -41,8 +49,6 @@ const Page = () => {
     useEffect(() => {
         firebaseData();
     }, []);
-
-    const router = useRouter();
 
     return (
         <div>
@@ -57,55 +63,50 @@ const Page = () => {
                         }}
                     />
                 </div>
-
-                <ul>
-                    {data
+                <Table
+                    columns={[
+                        "Video Adı",
+                        "Kanal Adı",
+                        "Tarih",
+                        "Düzenle",
+                        "Sil",
+                    ]}
+                    data={data
                         .filter((item) => {
-                            if (search === "") {
-                                return item;
-                            } else if (
-                                item.channel
-                                    .toLowerCase()
-                                    .includes(search.toLowerCase())
-                            ) {
-                                return item;
-                            }
+                            return item.channel
+                                .toLowerCase()
+                                .includes(search.toLowerCase());
                         })
                         .map((item) => {
-                            return (
-                                <li key={item.id}>
-                                    <div>
-                                        {item.title}
-                                        <br />
-                                        <span className={styles.channel}>
-                                            {item.channel}
-                                        </span>
-                                        <br />
-                                        <small>{item.date}</small>
-                                    </div>
-                                    <div>
+                            return [
+                                { value: item.title },
+                                { value: item.channel },
+                                { value: item.date },
+                                {
+                                    value: (
+                                        <button
+                                            onClick={() => {
+                                                editHandler(item.id);
+                                            }}
+                                        >
+                                            Düzenle
+                                        </button>
+                                    ),
+                                },
+                                {
+                                    value: (
                                         <button
                                             onClick={() => {
                                                 deleteHandler(item.id);
                                             }}
                                         >
-                                            Videoyu kaldır
+                                            Sil
                                         </button>
-                                        &nbsp;
-                                        <button
-                                            onClick={() => {
-                                                router.push(
-                                                    `/admin/youtube/edit/${item.id}`
-                                                );
-                                            }}
-                                        >
-                                            Videoyu Düzenle
-                                        </button>
-                                    </div>
-                                </li>
-                            );
+                                    ),
+                                },
+                            ];
                         })}
-                </ul>
+                />
             </div>
         </div>
     );

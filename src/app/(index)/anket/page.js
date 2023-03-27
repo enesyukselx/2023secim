@@ -2,20 +2,28 @@
 
 import { useState, useEffect } from "react";
 import styles from "./page.module.scss";
+import getAllDocuments from "@/firebase/firestore/getAllDatas";
 
 const Page = () => {
     const [data, setData] = useState([]);
     const [startIndex, setStartIndex] = useState(10);
+    const [loading, setLoading] = useState(false);
 
-    const fetchData = async () => {
-        const res = await fetch("http://localhost:3000/api/anket");
-        const data = await res.json();
+    const firebaseData = async () => {
+        const { result, error } = await getAllDocuments("polls");
+        if (error) {
+            console.log(error);
+            return;
+        }
+
+        const data = [];
+        result.forEach((doc) => {
+            data.push({ id: doc.id, ...doc.data() });
+        });
+
         setData(data);
+        setLoading(true);
     };
-
-    data.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-    });
 
     const loadHandle = () => {
         if (startIndex < data.length) {
@@ -23,32 +31,8 @@ const Page = () => {
         }
     };
 
-    const writeDate = (date) => {
-        const dateArr = date.split("-");
-        const day = dateArr[2];
-        const month = dateArr[1];
-        const year = dateArr[0];
-
-        const months = {
-            "01": "Ocak",
-            "02": "Şubat",
-            "03": "Mart",
-            "04": "Nisan",
-            "05": "Mayıs",
-            "06": "Haziran",
-            "07": "Temmuz",
-            "08": "Ağustos",
-            "09": "Eylül",
-            10: "Ekim",
-            11: "Kasım",
-            12: "Aralık",
-        };
-
-        return `${day} ${months[month]} ${year}`;
-    };
-
     useEffect(() => {
-        fetchData();
+        firebaseData();
     }, []);
 
     if (typeof window !== "undefined") {
@@ -68,50 +52,75 @@ const Page = () => {
                 <div className={styles.erdogan}>Recep Tayyip Erdoğan</div>
                 <div className={styles.kk}>Kemal Kılıçdaroğlu</div>
                 <div className={styles.ince}>Muharrem İnce</div>
-                <div className={styles.other}>Diğer</div>
+                <div className={styles.other}>Sinan Oğan</div>
             </div>
 
             {data.slice(0, startIndex).map((item) => (
                 <div className={styles.anket} key={item.id}>
                     <div className={styles.company}>
-                        <div className={styles.name}>{item.company}</div>
-                        <div className={styles.date}>
-                            {writeDate(item.date)}
-                        </div>
+                        <div className={styles.name}>{item.title}</div>
+                        <div className={styles.date}>{item.date}</div>
                     </div>
                     <div className={styles.result}>
                         <div
                             className={styles.erdogan}
-                            style={{ width: `${item.result.erdogan}%` }}
+                            style={{ width: `${item.erdogan}%` }}
                         >
-                            {item.result.erdogan}%
+                            {item.erdogan}%
                         </div>
 
                         <div
                             className={styles.kk}
-                            style={{ width: `${item.result.kk}%` }}
+                            style={{ width: `${item.kilicdaroglu}%` }}
                         >
-                            {item.result.kk}%
+                            {item.kilicdaroglu}%
                         </div>
                         <div
                             className={styles.ince}
-                            style={{ width: `${item.result.ince}%` }}
+                            style={{ width: `${item.ince}%` }}
                         >
-                            {item.result.ince >= 5
-                                ? `${item.result.ince}%`
-                                : ""}
+                            {item.ince >= 3 ? `${item.ince}%` : ""}
                         </div>
                         <div
                             className={styles.other}
-                            style={{ width: `${item.result.other}%` }}
+                            style={{ width: `${item.ogan}%` }}
                         >
-                            {item.result.other >= 5
-                                ? `${item.result.other}%`
-                                : ""}
+                            {item.ogan >= 3 ? `${item.ogan}%` : ""}
                         </div>
                     </div>
                 </div>
             ))}
+            {!loading && (
+                <>
+                    <div className={styles.anket}>
+                        <div className={styles.company}></div>
+
+                        <div className={styles.result}>
+                            <div
+                                className={styles.erdogan}
+                                style={{ width: "25%" }}
+                            >
+                                %
+                            </div>
+                            <div className={styles.kk} style={{ width: "25%" }}>
+                                %
+                            </div>
+                            <div
+                                className={styles.ince}
+                                style={{ width: "25%" }}
+                            >
+                                %
+                            </div>
+                            <div
+                                className={styles.other}
+                                style={{ width: "25%" }}
+                            >
+                                %
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
