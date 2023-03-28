@@ -1,0 +1,15 @@
+.images {
+    img {
+        border-radius: 100px;
+        border: 2px solid #ccc;
+    }
+}
+
+@media (max-width: 1024px) {
+    .images {
+        img {
+            width: 65px;
+            height: 65px;
+        }
+    }
+}

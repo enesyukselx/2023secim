@@ -1,0 +1,59 @@
+.candicate {
+    width: 100%;
+
+    .name {
+        margin-top: 1rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    .percent {
+        margin-top: 1.2rem;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .result {
+        margin-top: 1rem;
+        background-color: rgb(25, 32, 61);
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.4rem;
+
+        span {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .candicate {
+        &:nth-child(5) {
+            display: none;
+        }
+
+        &:nth-child(6) {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .candicate {
+        &:nth-child(4) {
+            display: none;
+        }
+    }
+    .name {
+        font-size: 1.2rem;
+    }
+
+    .percent {
+        font-size: 2.5rem;
+    }
+}

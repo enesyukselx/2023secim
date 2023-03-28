@@ -1,0 +1,61 @@
+.main {
+    margin: 0 auto;
+    text-align: center;
+
+    margin-bottom: 40rem;
+}
+
+.year {
+    display: flex;
+    gap: 1rem;
+    margin: 0 auto;
+    div {
+        width: 50%;
+
+        .selected {
+            background-color: #390707;
+            color: white;
+
+            &:hover {
+                background-color: #390707;
+            }
+        }
+
+        button {
+            width: 100%;
+            padding: 2rem;
+            background-color: transparent;
+            border: 0;
+            color: white;
+            cursor: pointer;
+            border: 1px solid white;
+            transition: all 0.2s ease-in-out;
+            font-weight: bold;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1.4rem;
+
+            &:hover {
+                background-color: #242424;
+            }
+
+            &:disabled {
+                background-color: #242424;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    margin-bottom: 7rem;
+}
+
+.map {
+    margin: 0 auto;
+}
+
+.candicates {
+    margin-bottom: 8rem;
+}

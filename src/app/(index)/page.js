@@ -2,10 +2,59 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "./page.module.scss";
-import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
-
-const inter = Inter({ subsets: ["latin"] });
+import Map from "@/components/Map/Map";
+import Candicates from "@/components/MainPage/Candicates";
+import { useState } from "react";
 
 export default function Home() {
-    return <main className={styles.main}></main>;
+    const [year, setYear] = useState("2018");
+
+    const yearHandler = (year) => {
+        setYear(year);
+    };
+
+    return (
+        <main className={styles.main}>
+            <div className={styles.year}>
+                <div>
+                    <button
+                        className={year === "2018" ? styles.selected : ""}
+                        onClick={() => {
+                            yearHandler("2018");
+                        }}
+                    >
+                        <Image
+                            src="/president-icon.png"
+                            alt="icon"
+                            height="32"
+                            width="32"
+                        />
+                        <span>2018 Cumhurbaşkanlığı Seçimi</span>
+                    </button>
+                </div>
+                <div>
+                    <button
+                        className={year === "2023" ? styles.selected : ""}
+                        onClick={() => {
+                            yearHandler("2023");
+                        }}
+                    >
+                        <Image
+                            src="/president-icon.png"
+                            alt="icon"
+                            height="32"
+                            width="32"
+                        />
+                        <span>2023 Cumhurbaşkanlığı Seçimi</span>
+                    </button>
+                </div>
+            </div>
+            <div className={styles.candicates}>
+                <Candicates year={year} />
+            </div>
+            <div className={styles.map}>
+                <Map year={year} />
+            </div>
+        </main>
+    );
 }
