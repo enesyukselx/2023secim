@@ -3,8 +3,8 @@ import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
 const candicates2018 = [
     {
         id: 1,
-        name: "Recep Tayyip",
-        lastname: "Erdoğan",
+        name: "RECEP TAYYİP",
+        lastname: "ERDOĞAN",
         percent: useGetCityFrom2018(
             "TÜRKİYE",
             "RECEP TAYYİP ERDOĞAN",
@@ -15,8 +15,8 @@ const candicates2018 = [
     },
     {
         id: 2,
-        name: "Muharrem",
-        lastname: "İnce",
+        name: "MUHARREM",
+        lastname: "İNCE",
         percent: useGetCityFrom2018(
             "TÜRKİYE",
             "MUHARREM İNCE",
@@ -27,8 +27,8 @@ const candicates2018 = [
     },
     {
         id: 3,
-        name: "Selahattin",
-        lastname: "Demirtaş",
+        name: "SELAHATTİN",
+        lastname: "DEMİRTAŞ",
         percent: useGetCityFrom2018(
             "TÜRKİYE",
             "SELAHATTİN DEMİRTAŞ",
@@ -39,8 +39,8 @@ const candicates2018 = [
     },
     {
         id: 4,
-        name: "Meral",
-        lastname: "Akşener",
+        name: "MERAL",
+        lastname: "AKŞENER",
         percent: useGetCityFrom2018(
             "TÜRKİYE",
             "MERAL AKŞENER",
@@ -51,8 +51,8 @@ const candicates2018 = [
     },
     {
         id: 5,
-        name: "Temel",
-        lastname: "Karamollaoğlu",
+        name: "TEMEL",
+        lastname: "KARAMOLLAOĞLU",
         percent: useGetCityFrom2018(
             "TÜRKİYE",
             "TEMEL KARAMOLLAOĞLU",
@@ -63,8 +63,8 @@ const candicates2018 = [
     },
     {
         id: 6,
-        name: "Doğu",
-        lastname: "Perinçek",
+        name: "DOĞU",
+        lastname: "PERİNÇEK",
         percent: useGetCityFrom2018(
             "TÜRKİYE",
             "DOĞU PERİNÇEK",

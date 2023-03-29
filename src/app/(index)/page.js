@@ -5,6 +5,7 @@ import styles from "./page.module.scss";
 import Map from "@/components/Map/Map";
 import Candicates from "@/components/MainPage/Candicates";
 import { useState } from "react";
+import CitySwiper from "@/components/MainPage/CitySwiper";
 
 export default function Home() {
     const [year, setYear] = useState("2018");
@@ -55,6 +56,7 @@ export default function Home() {
             <div className={styles.map}>
                 <Map year={year} />
             </div>
+            <div>{year === "2018" && <CitySwiper />}</div>
         </main>
     );
 }
