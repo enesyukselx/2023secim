@@ -54,7 +54,7 @@ const Page = () => {
     return (
         <div className={styles.main}>
             {data.slice(0, startIndex).map((item) => (
-                <div className={styles.poll}>
+                <div className={styles.poll} key={Math.random()}>
                     <div className={styles.company}>
                         <div className={styles.name}>{item.title}</div>
                         <div className={styles.date}>{item.date}</div>
@@ -66,11 +66,17 @@ const Page = () => {
                         navigation={true}
                         modules={[Pagination, Navigation]}
                         className={styles.swiper}
-                        key={item.id}
+                        id="pollswiper"
+                        key="pollswiper"
                     >
                         <SwiperSlide className={styles.slide}>
                             <div className={styles.image}>
-                                <Image src="/rte.jpg" width={90} height={90} />
+                                <Image
+                                    src="/rte.jpg"
+                                    width={90}
+                                    height={90}
+                                    alt="Recep Tayyip Erdoğan"
+                                />
                                 <span>%{item.erdogan}</span>
                             </div>
                             <div className={styles.percent}>
@@ -84,7 +90,12 @@ const Page = () => {
                         </SwiperSlide>
                         <SwiperSlide className={styles.slide}>
                             <div className={styles.image}>
-                                <Image src="/kk.jpg" width={90} height={90} />
+                                <Image
+                                    src="/kk.jpg"
+                                    width={90}
+                                    height={90}
+                                    alt="Kemal Kılıçdaroğlu"
+                                />
                                 <span>%{item.kilicdaroglu}</span>
                             </div>
                             <div className={styles.percent}>
@@ -98,7 +109,12 @@ const Page = () => {
                         </SwiperSlide>
                         <SwiperSlide className={styles.slide}>
                             <div className={styles.image}>
-                                <Image src="/mi.jpg" width={90} height={90} />
+                                <Image
+                                    src="/mi.jpg"
+                                    width={90}
+                                    height={90}
+                                    alt="Muharrem İnce"
+                                />
                                 <span>%{item.ince}</span>
                             </div>
                             <div className={styles.percent}>
@@ -112,7 +128,12 @@ const Page = () => {
                         </SwiperSlide>
                         <SwiperSlide className={styles.slide}>
                             <div className={styles.image}>
-                                <Image src="/so.webp" width={90} height={90} />
+                                <Image
+                                    src="/so.webp"
+                                    width={90}
+                                    height={90}
+                                    alt="Sinan Oğan"
+                                />
                                 <span>%{item.ogan}</span>
                             </div>
                             <div className={styles.percent}>

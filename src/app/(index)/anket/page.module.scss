@@ -65,53 +65,32 @@
     }
 }
 
-.erdogan {
-    background-color: rgb(209, 133, 26);
-    border-radius: 5px 0 0 5px;
-
-    &:hover {
-        background-color: rgb(202, 103, 4);
-    }
-}
-
-.kk {
-    background-color: rgb(150, 50, 28);
-
-    &:hover {
-        background-color: rgb(127, 0, 0);
-    }
-}
-
-.ince {
-    background-color: rgb(32, 55, 183);
-
-    &:hover {
-        background-color: rgb(0, 0, 127);
-    }
-}
-.other {
-    background-color: rgb(107, 154, 71);
-    border-radius: 0 5px 5px 0;
-
-    &:hover {
-        background-color: rgb(0, 127, 0);
-    }
-}
-
-.inform {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    text-align: center;
-
-    div {
-        font-size: 1.3rem;
-        padding: 0.7rem;
-        font-weight: bolder;
-        width: 25%;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+@media screen and (max-width: 768px) {
+    .poll {
+        padding: 3rem 1rem;
+        flex-direction: column;
+        .company {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .swiper {
+            width: 100%;
+            .slide {
+                padding: 0rem 4em;
+                .image {
+                    width: 80px;
+                    img {
+                        width: 70px;
+                        height: 70px;
+                    }
+                    span {
+                        font-size: 1.6rem;
+                    }
+                }
+                .percent {
+                    width: calc(100% - 80px);
+                }
+            }
+        }
     }
 }

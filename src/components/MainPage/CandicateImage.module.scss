@@ -5,11 +5,11 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media screen and (max-width: 768px) {
     .images {
         img {
-            width: 65px;
-            height: 65px;
+            width: 80px;
+            height: 80px;
         }
     }
 }

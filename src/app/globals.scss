@@ -43,3 +43,15 @@ a {
         font-size: 50%;
     }
 }
+
+@media screen and (max-width: 375px) {
+    html {
+        font-size: 40%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    html {
+        font-size: 32%;
+    }
+}
