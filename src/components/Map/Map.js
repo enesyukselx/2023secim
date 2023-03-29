@@ -61,25 +61,24 @@ const Map = (props) => {
         if (typeof window !== "undefined") {
             setScrollY(window.scrollY);
         }
-        if (typeof window !== "undefined") {
-            window.addEventListener("scroll", () => {
-                setScrollY(window.scrollY);
-                setMousePosition({
-                    x: mousePosition.x,
-                    y: mousePosition.y + scrollY,
-                });
-                setCity({});
+    }, []);
+    if (typeof window !== "undefined") {
+        window.addEventListener("scroll", () => {
+            setScrollY(window.scrollY);
+            setMousePosition({
+                x: mousePosition.x,
+                y: mousePosition.y + scrollY,
             });
+            setCity({});
+        });
 
-            window.addEventListener("mousemove", (e) => {
-                setMousePosition({
-                    x: e.clientX,
-                    y: e.clientY + scrollY,
-                });
+        window.addEventListener("mousemove", (e) => {
+            setMousePosition({
+                x: e.clientX,
+                y: e.clientY + scrollY,
             });
-        }
-    }, [window?.scrollY]);
-
+        });
+    }
     return (
         <>
             {city.name && props.year === "2018" && (
