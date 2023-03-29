@@ -78,7 +78,7 @@ const Map = (props) => {
                 });
             });
         }
-    }, [window.scrollY]);
+    }, [window?.scrollY]);
 
     return (
         <>
