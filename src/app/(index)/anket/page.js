@@ -1,8 +1,13 @@
 "use client";
-
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./page.module.scss";
 import getAllDocuments from "@/firebase/firestore/getAllDatas";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper";
 
 const Page = () => {
     const [data, setData] = useState([]);
@@ -48,79 +53,80 @@ const Page = () => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.inform}>
-                <div className={styles.erdogan}>Recep Tayyip Erdoğan</div>
-                <div className={styles.kk}>Kemal Kılıçdaroğlu</div>
-                <div className={styles.ince}>Muharrem İnce</div>
-                <div className={styles.other}>Sinan Oğan</div>
-            </div>
-
             {data.slice(0, startIndex).map((item) => (
-                <div className={styles.anket} key={item.id}>
+                <div className={styles.poll}>
                     <div className={styles.company}>
                         <div className={styles.name}>{item.title}</div>
                         <div className={styles.date}>{item.date}</div>
                     </div>
-                    <div className={styles.result}>
-                        <div
-                            className={styles.erdogan}
-                            style={{ width: `${item.erdogan}%` }}
-                        >
-                            {item.erdogan}%
-                        </div>
-
-                        <div
-                            className={styles.kk}
-                            style={{ width: `${item.kilicdaroglu}%` }}
-                        >
-                            {item.kilicdaroglu}%
-                        </div>
-                        <div
-                            className={styles.ince}
-                            style={{ width: `${item.ince}%` }}
-                        >
-                            {item.ince >= 3 ? `${item.ince}%` : ""}
-                        </div>
-                        <div
-                            className={styles.other}
-                            style={{ width: `${item.ogan}%` }}
-                        >
-                            {item.ogan >= 3 ? `${item.ogan}%` : ""}
-                        </div>
-                    </div>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={30}
+                        loop={true}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className={styles.swiper}
+                        key={item.id}
+                    >
+                        <SwiperSlide className={styles.slide}>
+                            <div className={styles.image}>
+                                <Image src="/rte.jpg" width={90} height={90} />
+                                <span>%{item.erdogan}</span>
+                            </div>
+                            <div className={styles.percent}>
+                                <span
+                                    style={{
+                                        width: `${item.erdogan}%`,
+                                        background: "#ed9600",
+                                    }}
+                                ></span>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide className={styles.slide}>
+                            <div className={styles.image}>
+                                <Image src="/kk.jpg" width={90} height={90} />
+                                <span>%{item.kilicdaroglu}</span>
+                            </div>
+                            <div className={styles.percent}>
+                                <span
+                                    style={{
+                                        width: `${item.kilicdaroglu}%`,
+                                        background: "#1C8DE4",
+                                    }}
+                                ></span>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide className={styles.slide}>
+                            <div className={styles.image}>
+                                <Image src="/mi.jpg" width={90} height={90} />
+                                <span>%{item.ince}</span>
+                            </div>
+                            <div className={styles.percent}>
+                                <span
+                                    style={{
+                                        width: `${parseFloat(item.ince)}%`,
+                                        background: "#c80814",
+                                    }}
+                                ></span>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide className={styles.slide}>
+                            <div className={styles.image}>
+                                <Image src="/so.webp" width={90} height={90} />
+                                <span>%{item.ogan}</span>
+                            </div>
+                            <div className={styles.percent}>
+                                <span
+                                    style={{
+                                        width: `${parseFloat(item.ogan)}%`,
+                                        background: "rgb(0, 128, 0)",
+                                    }}
+                                ></span>
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
             ))}
-            {!loading && (
-                <>
-                    <div className={styles.anket}>
-                        <div className={styles.company}></div>
-
-                        <div className={styles.result}>
-                            <div
-                                className={styles.erdogan}
-                                style={{ width: "25%" }}
-                            >
-                                %
-                            </div>
-                            <div className={styles.kk} style={{ width: "25%" }}>
-                                %
-                            </div>
-                            <div
-                                className={styles.ince}
-                                style={{ width: "25%" }}
-                            >
-                                %
-                            </div>
-                            <div
-                                className={styles.other}
-                                style={{ width: "25%" }}
-                            >
-                                %
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )}
         </div>
     );
 };

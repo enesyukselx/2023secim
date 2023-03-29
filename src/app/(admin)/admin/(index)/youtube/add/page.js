@@ -23,9 +23,7 @@ const Page = () => {
         const regex = /watch\?v=(\S+)/;
         const match = regex.exec(idRef.current.value);
 
-        const response = await fetch(
-            `http://localhost:3000/api/fetch?id=${match[1]}`
-        );
+        const response = await fetch(`/api/fetch?id=${match[1]}`);
 
         if (!response.ok) {
             setError(true);

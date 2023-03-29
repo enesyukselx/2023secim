@@ -10,7 +10,7 @@ const candicates2023 = [
     {
         id: 2,
         name: "Kemal",
-        lastname: "Kılıçdaroğlı",
+        lastname: "Kılıçdaroğlu",
         percent: "25",
         color: "#1C8DE4",
         imageUrl: "/kk.jpg",

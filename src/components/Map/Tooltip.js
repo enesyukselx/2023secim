@@ -2,6 +2,20 @@
 import styles from "./Tooltip.module.scss";
 
 const Tooltip = (props) => {
+    const candicates = props.data.candidates
+        .map((candicate) => {
+            return {
+                name: candicate.name,
+                lastname: candicate.lastname,
+                imageUrl: candicate.imageUrl,
+                color: candicate.color,
+                percent: candicate.percent,
+            };
+        })
+        .sort((a, b) => {
+            return b.percent - a.percent;
+        });
+
     return (
         <div
             className={styles.tooltip}
@@ -12,7 +26,7 @@ const Tooltip = (props) => {
         >
             <div className={styles.cityname}>{props.cityName}</div>
 
-            {props.data.candidates.map((candidate) => {
+            {candicates.map((candidate) => {
                 return (
                     <div className={styles.candidate} key={Math.random()}>
                         <div className={styles.candidateName}>
