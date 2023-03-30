@@ -14,6 +14,9 @@ const Page = () => {
     const [startIndex, setStartIndex] = useState(10);
     const [loading, setLoading] = useState(false);
 
+    const [results, setResults] = useState([]);
+    const items = [];
+
     const firebaseData = async () => {
         const { result, error } = await getAllDocuments("polls");
         if (error) {
@@ -27,6 +30,37 @@ const Page = () => {
         });
 
         setData(data);
+        data.map((item) => {
+            items.push([
+                {
+                    name: "Recep Tayyip Erdoğan",
+                    value: item.erdogan,
+                    img: "/rte.jpg",
+                    color: "#ed9600",
+                },
+                {
+                    name: "Kemal Kılıçdaroğlu",
+                    value: item.kilicdaroglu,
+                    img: "/kk.jpg",
+                    color: "#1C8DE4",
+                },
+                {
+                    name: "Muharrem İnce",
+                    value: item.ince,
+                    img: "/mi.jpg",
+                    color: "#c80814",
+                },
+                {
+                    name: "Sinan Oğan",
+                    value: item.ogan,
+                    img: "/so.webp",
+                    color: "rgb(0, 128, 0)",
+                },
+            ]);
+
+            setResults(items);
+        });
+
         setLoading(true);
     };
 
@@ -53,7 +87,7 @@ const Page = () => {
 
     return (
         <div className={styles.main}>
-            {data.slice(0, startIndex).map((item) => (
+            {data.slice(0, startIndex).map((item, index) => (
                 <div className={styles.poll} key={Math.random()}>
                     <div className={styles.company}>
                         <div className={styles.name}>{item.title}</div>
@@ -69,82 +103,32 @@ const Page = () => {
                         id="pollswiper"
                         key="pollswiper"
                     >
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.image}>
-                                <Image
-                                    src="/rte.jpg"
-                                    width={90}
-                                    height={90}
-                                    alt="Recep Tayyip Erdoğan"
-                                />
-                                <span>%{item.erdogan}</span>
-                            </div>
-                            <div className={styles.percent}>
-                                <span
-                                    style={{
-                                        width: `${item.erdogan}%`,
-                                        background: "#ed9600",
-                                    }}
-                                ></span>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.image}>
-                                <Image
-                                    src="/kk.jpg"
-                                    width={90}
-                                    height={90}
-                                    alt="Kemal Kılıçdaroğlu"
-                                />
-                                <span>%{item.kilicdaroglu}</span>
-                            </div>
-                            <div className={styles.percent}>
-                                <span
-                                    style={{
-                                        width: `${item.kilicdaroglu}%`,
-                                        background: "#1C8DE4",
-                                    }}
-                                ></span>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.image}>
-                                <Image
-                                    src="/mi.jpg"
-                                    width={90}
-                                    height={90}
-                                    alt="Muharrem İnce"
-                                />
-                                <span>%{item.ince}</span>
-                            </div>
-                            <div className={styles.percent}>
-                                <span
-                                    style={{
-                                        width: `${parseFloat(item.ince)}%`,
-                                        background: "#c80814",
-                                    }}
-                                ></span>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.slide}>
-                            <div className={styles.image}>
-                                <Image
-                                    src="/so.webp"
-                                    width={90}
-                                    height={90}
-                                    alt="Sinan Oğan"
-                                />
-                                <span>%{item.ogan}</span>
-                            </div>
-                            <div className={styles.percent}>
-                                <span
-                                    style={{
-                                        width: `${parseFloat(item.ogan)}%`,
-                                        background: "rgb(0, 128, 0)",
-                                    }}
-                                ></span>
-                            </div>
-                        </SwiperSlide>
+                        {results[index]
+                            .sort((a, b) => b.value - a.value)
+                            .map((item, index) => (
+                                <SwiperSlide
+                                    className={styles.slide}
+                                    key={index}
+                                >
+                                    <div className={styles.image}>
+                                        <Image
+                                            src={item.img}
+                                            width={90}
+                                            height={90}
+                                            alt={item.name}
+                                        />
+                                        <span>%{item.value}</span>
+                                    </div>
+                                    <div className={styles.percent}>
+                                        <span
+                                            style={{
+                                                width: `${item.value}%`,
+                                                background: item.color,
+                                            }}
+                                        ></span>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
                     </Swiper>
                 </div>
             ))}
