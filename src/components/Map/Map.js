@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Cities2018 from "./Cities2018";
 import Cities2023 from "./Cities2023";
-import TooltipObj from "./TooltipObj";
 import styles from "./Map.module.scss";
 import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
 
@@ -56,9 +55,6 @@ const Map = (props) => {
 
     return (
         <>
-            {city.name && props.year === "2018" && (
-                <TooltipObj cityName={city.name} data={city} />
-            )}
             <svg
                 className={styles.map}
                 baseProfile="tiny"

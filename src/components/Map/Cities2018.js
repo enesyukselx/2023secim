@@ -2,10 +2,11 @@
 import { useState } from "react";
 import cities from "@/constants/mappaths.json";
 import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
+import { Tooltip } from "@mui/material";
+import styles from "./Tooltip.module.scss";
 
 const Cities = () => {
     const [hoveredCity, setHoveredCity] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
 
     return cities.map((city, index) => {
         const cityName = city.name;
@@ -37,17 +38,72 @@ const Cities = () => {
             }
         };
 
+        const candicates = [
+            {
+                name: "RECEP TAYYİP ERDOĞAN",
+                percent: useGetCityFrom2018(
+                    cityName,
+                    "RECEP TAYYİP ERDOĞAN",
+                    "yüzde"
+                ),
+            },
+            {
+                name: "MUHARREM İNCE",
+                percent: useGetCityFrom2018(cityName, "MUHARREM İNCE", "yüzde"),
+            },
+            {
+                name: "SELAHATTİN DEMİRTAŞ",
+                percent: useGetCityFrom2018(
+                    cityName,
+                    "SELAHATTİN DEMİRTAŞ",
+                    "yüzde"
+                ),
+            },
+            {
+                name: "TEMEL KARAMOLLAOĞLU",
+                percent: useGetCityFrom2018(
+                    cityName,
+                    "TEMEL KARAMOLLAOĞLU",
+                    "yüzde"
+                ),
+            },
+            {
+                name: "MERAL AKŞENER",
+                percent: useGetCityFrom2018(cityName, "MERAL AKŞENER", "yüzde"),
+            },
+            {
+                name: "DOĞU PERİNÇEK",
+                percent: useGetCityFrom2018(cityName, "DOĞU PERİNÇEK", "yüzde"),
+            },
+        ].sort((a, b) => b.percent - a.percent);
+
         return (
-            <path
-                d={city.d}
-                id={city.id}
-                name={city.name}
-                key={index}
-                fill={getWinner()}
-                onMouseEnter={() => setHoveredCity(cityName)}
-                onMouseLeave={() => setHoveredCity(false)}
-                data-tooltip-id={city.name}
-            ></path>
+            <Tooltip
+                title={
+                    <div className={styles.tooltip}>
+                        <h3 className={styles.cityname}>{cityName}</h3>
+
+                        {candicates.map((candicate, index) => (
+                            <div key={index} className={styles.cand}>
+                                <div className={styles.candicatename}>
+                                    {candicate.name}
+                                </div>
+                                <div>{candicate.percent.toFixed(2)}%</div>
+                            </div>
+                        ))}
+                    </div>
+                }
+            >
+                <path
+                    d={city.d}
+                    id={city.id}
+                    name={city.name}
+                    key={index}
+                    fill={getWinner()}
+                    onMouseEnter={() => setHoveredCity(cityName)}
+                    onMouseLeave={() => setHoveredCity(false)}
+                ></path>
+            </Tooltip>
         );
     });
 };
