@@ -5,6 +5,7 @@ import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
 
 const Cities = () => {
     const [hoveredCity, setHoveredCity] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     return cities.map((city, index) => {
         const cityName = city.name;
@@ -45,6 +46,7 @@ const Cities = () => {
                 fill={getWinner()}
                 onMouseEnter={() => setHoveredCity(cityName)}
                 onMouseLeave={() => setHoveredCity(false)}
+                data-tooltip-id={city.name}
             ></path>
         );
     });

@@ -1,19 +1,19 @@
+.reacttooltip {
+    z-index: 10000;
+}
 .tooltip {
-    position: absolute;
-    z-index: 1000;
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #ccc;
-    padding: 1rem 3rem;
+    z-index: 10000;
+    color: #fff;
+    padding: 1rem 1rem;
     border-radius: 5px;
     pointer-events: none;
-    font-size: 1.3rem;
-    width: 280px;
+    font-size: 1.4rem;
+    width: 300px;
 
     .cityname {
         font-weight: bold;
-        margin-bottom: 0.5rem;
-        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 1.7rem;
     }
 
     .candidate {
@@ -27,9 +27,8 @@
     }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .tooltip {
         width: 200px;
-        padding: 1rem;
     }
 }

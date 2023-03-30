@@ -6,11 +6,11 @@ import Tooltip from "./Tooltip";
 import styles from "./Map.module.scss";
 import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
 
-const Map = (props) => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [city, setCity] = useState({});
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
-    const [scrollY, setScrollY] = useState(0);
+const Map = (props) => {
+    const [city, setCity] = useState({});
 
     const cityHandler = (name) => {
         const data = {
@@ -57,39 +57,10 @@ const Map = (props) => {
         setCity(data);
     };
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setScrollY(window.scrollY);
-        }
-    }, []);
-    if (typeof window !== "undefined") {
-        window.addEventListener("scroll", () => {
-            setScrollY(window.scrollY);
-            setMousePosition({
-                x: mousePosition.x,
-                y: mousePosition.y + scrollY,
-            });
-            setCity({});
-        });
-
-        window.addEventListener("mousemove", (e) => {
-            setMousePosition({
-                x: e.clientX,
-                y: e.clientY + scrollY,
-            });
-        });
-    }
     return (
         <>
             {city.name && props.year === "2018" && (
-                <Tooltip
-                    cityName={city.name}
-                    data={city}
-                    mousePosition={{
-                        x: mousePosition.x - 140,
-                        y: mousePosition.y + 20,
-                    }}
-                />
+                <Tooltip cityName={city.name} data={city} />
             )}
             <svg
                 className={styles.map}
@@ -104,13 +75,12 @@ const Map = (props) => {
                 viewBox="0 0 1000 424"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="1"
+                data-some-relevant-attr="wow"
                 onMouseOver={(e) => {
                     if (e.target.getAttribute("name")) {
                         cityHandler(e.target.getAttribute("name"));
-                        setMousePosition({
-                            x: e.clientX,
-                            y: e.clientY,
-                        });
                     }
                     if (e.target.getAttribute("id") === null) {
                         setCity({});

@@ -1,5 +1,7 @@
 "use client";
 import styles from "./Tooltip.module.scss";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 const Tooltip = (props) => {
     const candicates = props.data.candidates
@@ -17,28 +19,34 @@ const Tooltip = (props) => {
         });
 
     return (
-        <div
-            className={styles.tooltip}
-            style={{
-                left: props.mousePosition.x,
-                top: props.mousePosition.y,
-            }}
-        >
-            <div className={styles.cityname}>{props.cityName}</div>
+        <>
+            <ReactTooltip
+                id={props.cityName}
+                className={styles.reacttooltip}
+                openOnClick={true}
+                render={() => (
+                    <div className={styles.tooltip}>
+                        <div className={styles.cityname}>{props.cityName}</div>
 
-            {candicates.map((candidate) => {
-                return (
-                    <div className={styles.candidate} key={Math.random()}>
-                        <div className={styles.candidateName}>
-                            {candidate.name}
-                        </div>
-                        <div className={styles.candidatePercent}>
-                            {candidate.percent.toFixed(2)} %
-                        </div>
+                        {candicates.map((candidate) => {
+                            return (
+                                <div
+                                    className={styles.candidate}
+                                    key={Math.random()}
+                                >
+                                    <div className={styles.candidateName}>
+                                        {candidate.name}
+                                    </div>
+                                    <div className={styles.candidatePercent}>
+                                        {candidate.percent.toFixed(2)} %
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
-                );
-            })}
-        </div>
+                )}
+            />
+        </>
     );
 };
 
