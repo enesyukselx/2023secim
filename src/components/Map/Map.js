@@ -56,6 +56,9 @@ const Map = (props) => {
 
     return (
         <>
+            {city.name && props.year === "2018" && (
+                <TooltipObj cityName={city.name} data={city} />
+            )}
             <svg
                 className={styles.map}
                 baseProfile="tiny"

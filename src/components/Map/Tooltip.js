@@ -1,6 +1,8 @@
+"use client";
 import styles from "./Tooltip.module.scss";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import React, { useRef } from "react";
 
 const TooltipObj = (props) => {
     const candicates = props.data.candidates
