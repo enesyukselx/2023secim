@@ -79,6 +79,8 @@ const Cities = () => {
 
         return (
             <Tooltip
+                enterTouchDelay={0}
+                leaveTouchDelay={10000}
                 title={
                     <div className={styles.tooltip}>
                         <h3 className={styles.cityname}>{cityName}</h3>
