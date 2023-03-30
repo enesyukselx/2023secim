@@ -81,6 +81,7 @@ const Cities = () => {
             <Tooltip
                 enterTouchDelay={0}
                 leaveTouchDelay={10000}
+                key={index}
                 title={
                     <div className={styles.tooltip}>
                         <h3 className={styles.cityname}>{cityName}</h3>

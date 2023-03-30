@@ -1,7 +1,7 @@
 import "../globals.scss";
 import styles from "./layout.module.scss";
-
 import Link from "next/link";
+import CountDown from "@/components/MainPage/CountDown";
 
 export const metadata = {
     title: "Create Next App",
@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
                 <header>
                     <div className={styles.logo}>
                         <h1>SECIM2023</h1>
+                        <CountDown />
                     </div>
 
                     <div className={styles.menu}>
