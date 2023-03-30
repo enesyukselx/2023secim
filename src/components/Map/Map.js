@@ -2,12 +2,9 @@
 import { useState, useEffect } from "react";
 import Cities2018 from "./Cities2018";
 import Cities2023 from "./Cities2023";
-import Tooltip from "./Tooltip";
+import TooltipObj from "./Tooltip";
 import styles from "./Map.module.scss";
 import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
-
-import { Tooltip as ReactTooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
 
 const Map = (props) => {
     const [city, setCity] = useState({});
@@ -60,7 +57,7 @@ const Map = (props) => {
     return (
         <>
             {city.name && props.year === "2018" && (
-                <Tooltip cityName={city.name} data={city} />
+                <TooltipObj cityName={city.name} data={city} />
             )}
             <svg
                 className={styles.map}

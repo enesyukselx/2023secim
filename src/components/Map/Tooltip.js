@@ -1,9 +1,9 @@
 "use client";
 import styles from "./Tooltip.module.scss";
-import { Tooltip as ReactTooltip } from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
-const Tooltip = (props) => {
+const TooltipObj = (props) => {
     const candicates = props.data.candidates
         .map((candicate) => {
             return {
@@ -20,7 +20,7 @@ const Tooltip = (props) => {
 
     return (
         <>
-            <ReactTooltip
+            <Tooltip
                 id={props.cityName}
                 className={styles.reacttooltip}
                 openOnClick={true}
@@ -50,4 +50,4 @@ const Tooltip = (props) => {
     );
 };
 
-export default Tooltip;
+export default TooltipObj;
