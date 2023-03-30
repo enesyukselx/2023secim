@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Cities2018 from "./Cities2018";
 import Cities2023 from "./Cities2023";
-import TooltipObj from "./Tooltip";
+import TooltipObj from "./TooltipObj";
 import styles from "./Map.module.scss";
 import useGetCityFrom2018 from "@/hooks/useGetCityFrom2018";
 
