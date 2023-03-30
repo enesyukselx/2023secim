@@ -75,9 +75,6 @@ const Map = (props) => {
                 viewBox="0 0 1000 424"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
-                data-tooltip-id="my-tooltip"
-                data-tooltip-content="1"
-                data-some-relevant-attr="wow"
                 onMouseOver={(e) => {
                     if (e.target.getAttribute("name")) {
                         cityHandler(e.target.getAttribute("name"));
