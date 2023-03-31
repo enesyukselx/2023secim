@@ -57,6 +57,7 @@ const Page = () => {
                 kilicdaroglu: kilicdarogluRef.current.value,
                 ince: inceRef.current.value,
                 ogan: oganRef.current.value,
+                publicDate: new Date().getTime(),
             }
         );
 

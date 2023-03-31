@@ -29,7 +29,7 @@ const Page = () => {
             data.push({ id: doc.id, ...doc.data() });
         });
 
-        setData(data);
+        setData(data.sort((a, b) => b.publicDate - a.publicDate));
         data.map((item) => {
             items.push([
                 {
