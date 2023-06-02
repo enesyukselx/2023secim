@@ -31,37 +31,7 @@ const CountDown = () => {
         }, 1000);
     });
 
-    return (
-        <div
-            className="countdown"
-            style={{
-                fontSize: "1.2rem",
-                marginTop: "0.8rem",
-            }}
-        >
-            Seçime&nbsp;
-            {Object.keys(countdown).map((interval, index) => {
-                const value = countdown[interval];
-                return (
-                    <span key={index}>
-                        <span className="value">{value}</span>
-                        <span className="interval">
-                            {interval === "days"
-                                ? " Gün "
-                                : interval === "hours"
-                                ? " Saat "
-                                : interval === "minutes"
-                                ? " Dakika "
-                                : interval === "seconds"
-                                ? " Saniye "
-                                : ""}
-                        </span>
-                    </span>
-                );
-            })}
-            kaldı!
-        </div>
-    );
+    return <div></div>;
 };
 
 export default CountDown;

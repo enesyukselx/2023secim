@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
             <body>
                 <header>
                     <div className={styles.logo}>
-                        <h1>SECIM2023</h1>
+                        <h1>secim2023.com.tr</h1>
                         <CountDown />
                     </div>
 
